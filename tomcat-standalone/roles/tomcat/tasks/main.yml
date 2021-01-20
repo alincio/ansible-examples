@@ -37,6 +37,7 @@
   git:
     repo: 'https://alinciovica.visualstudio.com/Basic%20Spring%20RESTful%20Web%20Service/_git/Basic%20Spring%20RESTful%20Web%20Service'
     dest: /opt/git_co/
+    version: alincio-uat
 
 - name: Copying .War from git checkout with permissions
   ansible.builtin.copy:
