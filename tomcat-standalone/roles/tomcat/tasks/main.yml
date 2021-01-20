@@ -11,13 +11,13 @@
   become_method: sudo
 
 - name: Download Tomcat
-  get_url: url=http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.61/bin/apache-tomcat-7.0.61.tar.gz dest=/opt/apache-tomcat-7.0.61.tar.gz
+  get_url: url=http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz dest=/opt/apache-tomcat-9.0.41.tar.gz
 
 - name: Extract archive
-  command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-7.0.61.tar.gz -C /opt/ creates=/opt/apache-tomcat-7.0.61
+  command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-9.0.41.tar.gz -C /opt/ creates=/opt/apache-tomcat-9.0.41
 
 - name: Symlink install directory
-  file: src=/opt/apache-tomcat-7.0.61 path=/usr/share/tomcat state=link
+  file: src=/opt/apache-tomcat-9.0.41 path=/usr/share/tomcat state=link
 
 - name: Change ownership of Tomcat installation
   file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
@@ -42,7 +42,7 @@
 - name: Copying .War from git checkout with permissions
   ansible.builtin.copy:
     src: /opt/git_co/initial/target/rest-service-0.0.1-SNAPSHOT.war
-    dest: /opt/apache-tomcat-7.0.61/webapps
+    dest: /opt/apache-tomcat-9.0.41/webapps
     mode: '0777'
 
 - name: Start Tomcat
