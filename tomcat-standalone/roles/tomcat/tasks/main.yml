@@ -33,6 +33,17 @@
 - name: Install Tomcat init script
   copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
 
+- name: Git checkout from Azure
+  git:
+    repo: 'https://alinciovica.visualstudio.com/Basic%20Spring%20RESTful%20Web%20Service/_git/Basic%20Spring%20RESTful%20Web%20Service'
+    dest: /opt/git_co/
+
+- name: Copying .War from git checkout with permissions
+  ansible.builtin.copy:
+    src: /opt/git_co/initial/target/rest-service-0.0.1-SNAPSHOT.war
+    dest: /opt/apache-tomcat-7.0.61/webapps
+    mode: '0777'
+
 - name: Start Tomcat
   service: name=tomcat state=started enabled=yes
 
